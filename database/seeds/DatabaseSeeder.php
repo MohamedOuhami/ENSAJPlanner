@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\SallesTableSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -10,10 +11,8 @@ class DatabaseSeeder extends Seeder
             PermissionsTableSeeder::class,
             RolesTableSeeder::class,
             PermissionRoleTableSeeder::class,
-            SchoolClassesTableSeeder::class,
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
-            LessonsTableSeeder::class,
-        ]);
+            SallesTableSeeder::class        ]);
     }
 }

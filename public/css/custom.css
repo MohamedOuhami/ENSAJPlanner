@@ -13,7 +13,17 @@ textarea {
     margin-bottom: 0.333em;
     margin-top: .2rem;
 }
-
+.modal .modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .modal .modal-content {
+    text-align: center;
+  }
+  
 .dataTables_filter {
     margin-right: .2rem;
 }
@@ -27,6 +37,10 @@ textarea {
     box-sizing: border-box;
     border-collapse: collapse;
 }
+.constraints {
+    font-weight: bold;
+}
+
 
 table.dataTable thead th {
     border-bottom: 2px solid #c8ced3;

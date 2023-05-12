@@ -6,19 +6,21 @@ use Carbon\Carbon;
 
 class TimeService
 {
-    public function generateTimeRange($from, $to)
-    {
-        $time = Carbon::parse($from);
-        $timeRange = [];
+    public function generateTimeRange($startTime, $endTime)
+{
+    $start = Carbon::createFromFormat('H:i', $startTime);
+    $end = Carbon::createFromFormat('H:i', $endTime);
 
-        do 
-        {
-            array_push($timeRange, [
-                'start' => $time->format("H:i"),
-                'end' => $time->addMinutes(30)->format("H:i")
-            ]);    
-        } while ($time->format("H:i") !== $to);
+    $timeRange = [];
 
-        return $timeRange;
+    while ($start < $end) {
+        $timeRange[] = [
+            'start' => $start->format('H:i'),
+            'end' => $start->addMinutes(15)->format('H:i'),
+        ];
     }
+
+    return $timeRange;
+}
+
 }

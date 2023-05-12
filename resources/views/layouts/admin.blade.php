@@ -30,8 +30,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <span class="navbar-brand-full">{{ trans('panel.site_title') }}</span>
-            <span class="navbar-brand-minimized">{{ trans('panel.site_title') }}</span>
+            <span class="navbar-brand-full">ENSAJPlanner</span>
+            <span class="navbar-brand-minimized">ENSAJPlanner</span>
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>

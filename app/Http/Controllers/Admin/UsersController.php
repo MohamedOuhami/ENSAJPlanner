@@ -35,9 +35,7 @@ class UsersController extends Controller
 
         $roles = Role::all()->pluck('title', 'id');
 
-        $classes = SchoolClass::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.users.create', compact('roles', 'classes'));
+        return view('admin.users.create', compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -53,12 +51,7 @@ class UsersController extends Controller
         abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::all()->pluck('title', 'id');
-
-        $classes = SchoolClass::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $user->load('roles', 'class');
-
-        return view('admin.users.edit', compact('roles', 'classes', 'user'));
+        return view('admin.users.edit', compact('roles', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)

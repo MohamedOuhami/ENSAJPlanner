@@ -4,17 +4,17 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.users.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
+                Ajouter un nouvel utilisateur
             </a>
             <a class="btn btn-success" href="{{ route("admin.users.create") }}?student">
-                {{ trans('global.add') }} New Student
+                Ajouter un nouvel étudiant
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
+        Liste des utilisateurs
     </div>
 
     <div class="card-body">
@@ -26,22 +26,22 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.id') }}
+                            Nom complet
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.name') }}
+                            Email
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email') }}
+                            Roles
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email_verified_at') }}
+                            Semestre
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.roles') }}
+                            Section
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.class') }}
+                            Groupe
                         </th>
                         <th>
                             &nbsp;
@@ -55,16 +55,10 @@
 
                             </td>
                             <td>
-                                {{ $user->id ?? '' }}
-                            </td>
-                            <td>
                                 {{ $user->name ?? '' }}
                             </td>
                             <td>
                                 {{ $user->email ?? '' }}
-                            </td>
-                            <td>
-                                {{ $user->email_verified_at ?? '' }}
                             </td>
                             <td>
                                 @foreach($user->roles as $key => $item)
@@ -72,18 +66,19 @@
                                 @endforeach
                             </td>
                             <td>
-                                {{ $user->class->name ?? '' }}
+                                {{ $user->Semester?? '' }}
                             </td>
                             <td>
-                                @can('user_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
+                                {{ $user->section->Intitule ?? '' }}
+                            </td>
+                            <td>
+                                {{ $user->group->intitule ?? '' }}
+                            </td>
+                            <td>
 
                                 @can('user_edit')
                                     <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                        {{ trans('global.edit') }}
+                                        Modifer
                                     </a>
                                 @endcan
 
@@ -91,7 +86,7 @@
                                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Supprimer">
                                     </form>
                                 @endcan
 

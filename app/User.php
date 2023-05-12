@@ -33,7 +33,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'class_id',
+        'telephone',
+        'group_id',
+        'Semester',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -54,11 +56,6 @@ class User extends Authenticatable
     public function getIsStudentAttribute()
     {
         return $this->roles()->where('id', 4)->exists();
-    }
-
-    public function teacherLessons()
-    {
-        return $this->hasMany(Lesson::class, 'teacher_id', 'id');
     }
 
     public function getEmailVerifiedAtAttribute($value)
@@ -88,8 +85,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    function class()
-    {
-        return $this->belongsTo(SchoolClass::class, 'class_id');
+    // Setip the Many to One relationship between USer and class
+    public function lesson(){
+        return $this->hasOne(Lesson::class);
+    }
+
+    public function group(){
+        return $this->belongsTo(Group::class,'group_id');
+    }
+
+    public function section(){
+        return $this->belongsTo(Section::class,'section_id');
     }
 }

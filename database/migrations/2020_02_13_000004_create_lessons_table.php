@@ -9,10 +9,11 @@ class CreateLessonsTable extends Migration
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('weekday');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->id();
+            $table->integer('weekday')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->string("type");
             $table->timestamps();
             $table->softDeletes();
         });

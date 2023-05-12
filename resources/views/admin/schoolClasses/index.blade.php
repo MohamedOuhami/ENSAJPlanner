@@ -4,14 +4,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.school-classes.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.schoolClass.title_singular') }}
+                Ajouter un élément
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.schoolClass.title_singular') }} {{ trans('global.list') }}
+        Liste des éléments
     </div>
 
     <div class="card-body">
@@ -23,16 +23,34 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.schoolClass.fields.id') }}
+                            Intitule
                         </th>
                         <th>
-                            {{ trans('cruds.schoolClass.fields.name') }}
+                            Volume Horaire ( Cours )
                         </th>
                         <th>
-                            Schedule
+                            Volume Horaire ( TD )
                         </th>
                         <th>
-                            &nbsp;
+                            Volume Horaire ( TP )
+                        </th>
+                        <th>
+                            Occurence par semaine ( Cours )
+                        </th>
+                        <th>
+                            Occurence par semaine ( TD )
+                        </th>
+                        <th>
+                            Occurence par semaine ( TP )
+                        </th>
+                        <th>
+                            Module
+                        </th>
+                        <th>
+                            Modifier
+                        </th>
+                        <th>
+                            Supprimer
                         </th>
                     </tr>
                 </thead>
@@ -43,32 +61,45 @@
 
                             </td>
                             <td>
-                                {{ $schoolClass->id ?? '' }}
-                            </td>
-                            <td>
                                 {{ $schoolClass->name ?? '' }}
                             </td>
                             <td>
-                                <a href="{{ route('admin.calendar.index') }}?class_id={{ $schoolClass->id }}">View Schedule</a>
+                                {{ $schoolClass->volume_horaire_Cours ?? '' }}
                             </td>
                             <td>
-                                @can('school_class_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.school-classes.show', $schoolClass->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
+                                {{ $schoolClass->volume_horaire_TD ?? '' }}
+                            </td>
+                            <td>
+                                {{ $schoolClass->volume_horaire_TP ?? '' }}
+                            </td>
+                            <td>
+                                {{ $schoolClass->occ_per_week_Cours ?? '' }}
+                            </td>
+                            <td>
+                                {{ $schoolClass->occ_per_week_TD ?? '' }}
+                            </td>
+                            <td>
+                                {{ $schoolClass->occ_per_week_TP ?? '' }}
+                            </td>
+                            <td>
+                                {{ $modules->firstWhere('id', $schoolClass->code_module)['intitule'] ?? '' }}
+                            </td>
+                            <td>
 
                                 @can('school_class_edit')
                                     <a class="btn btn-xs btn-info" href="{{ route('admin.school-classes.edit', $schoolClass->id) }}">
-                                        {{ trans('global.edit') }}
+                                        Modifier
                                     </a>
                                 @endcan
+
+                            </td>
+                            <td>
 
                                 @can('school_class_delete')
                                     <form action="{{ route('admin.school-classes.destroy', $schoolClass->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Supprimer">
                                     </form>
                                 @endcan
 

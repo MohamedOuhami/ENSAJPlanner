@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroySchoolClassRequest;
 use App\Http\Requests\StoreSchoolClassRequest;
 use App\Http\Requests\UpdateSchoolClassRequest;
+use App\Module;
 use App\SchoolClass;
 use Gate;
 use Illuminate\Http\Request;
@@ -18,15 +19,19 @@ class SchoolClassesController extends Controller
         abort_if(Gate::denies('school_class_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $schoolClasses = SchoolClass::all();
+        $modules = Module::all();
 
-        return view('admin.schoolClasses.index', compact('schoolClasses'));
+        return view('admin.schoolClasses.index', compact('schoolClasses','modules'));
     }
+
 
     public function create()
     {
         abort_if(Gate::denies('school_class_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $modules = Module::all();
+        
 
-        return view('admin.schoolClasses.create');
+        return view('admin.schoolClasses.create',compact('modules'));
     }
 
     public function store(StoreSchoolClassRequest $request)
@@ -39,8 +44,9 @@ class SchoolClassesController extends Controller
     public function edit(SchoolClass $schoolClass)
     {
         abort_if(Gate::denies('school_class_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $modules = Module::all();
 
-        return view('admin.schoolClasses.edit', compact('schoolClass'));
+        return view('admin.schoolClasses.edit', compact('schoolClass','modules'));
     }
 
     public function update(UpdateSchoolClassRequest $request, SchoolClass $schoolClass)

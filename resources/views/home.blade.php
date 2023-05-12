@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    Connexion réussie
                 </div>
 
                 <div class="card-body">
@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Bienvenue ! Vous êtes connecté
                 </div>
             </div>
         </div>

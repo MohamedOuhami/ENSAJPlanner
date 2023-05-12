@@ -1,17 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-@can('role_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}
+        Liste des roles
     </div>
 
     <div class="card-body">
@@ -23,13 +14,10 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.role.fields.id') }}
+                            Titre
                         </th>
                         <th>
-                            {{ trans('cruds.role.fields.title') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.role.fields.permissions') }}
+                            Permissions
                         </th>
                         <th>
                             &nbsp;
@@ -41,9 +29,6 @@
                         <tr data-entry-id="{{ $role->id }}">
                             <td>
 
-                            </td>
-                            <td>
-                                {{ $role->id ?? '' }}
                             </td>
                             <td>
                                 {{ $role->title ?? '' }}
